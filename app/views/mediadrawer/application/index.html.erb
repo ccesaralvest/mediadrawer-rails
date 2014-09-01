@@ -1,0 +1,16 @@
+<div>
+  <div class='directory-menu'>
+    <% 3.times do %>
+      <%= link_to 'directory 1',{}, { "class" => 'directory', "data-id" => 1 } %>
+    <% end %>
+  </div>
+
+  <div class='content'>
+    <% 3.times do %>
+      <%= link_to 'file 1',{}, { "class" => 'directory', "data-id" => 1 } %>
+    <% end %>
+  </div>
+
+  <div class='sidebar-right'>
+  </div>
+</div>
