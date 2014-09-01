@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901195835) do
+ActiveRecord::Schema.define(version: 20140901222636) do
 
   create_table "mediadrawer_folders", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "parent_id"
   end
 
   create_table "mediadrawer_media", force: true do |t|
@@ -26,7 +27,7 @@ ActiveRecord::Schema.define(version: 20140901195835) do
     t.integer  "folder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.string   "mime_type"
   end
 
   add_index "mediadrawer_media", ["folder_id"], name: "index_mediadrawer_media_on_folder_id"
