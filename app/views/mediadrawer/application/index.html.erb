@@ -1,7 +1,7 @@
 <div>
   <div class='directory-menu'>
-    <% 3.times do %>
-      <%= link_to 'directory 1',{}, { "class" => 'directory', "data-id" => 1 } %>
+    <% @directories.each do |directory| %>
+      <%= link_to directory.name , '#' , { "class" => 'directory', "data-id" => 1 } %>
     <% end %>
   </div>
 
