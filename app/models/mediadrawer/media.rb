@@ -9,12 +9,12 @@ module Mediadrawer
 
     def upload(content='')
       mime_type = FileMagic.new(FileMagic::MAGIC_MIME).buffer(content).to_s
-      self.update mime_type: mime_type
+      self.mime_type = mime_type
       s3 = S3.new
       s3.create name, content
       obj = s3[name]
       if obj.exists?
-        self.update url: obj.public_url.to_s
+        self.url = obj.public_url.to_s
         obj
       else
         false
