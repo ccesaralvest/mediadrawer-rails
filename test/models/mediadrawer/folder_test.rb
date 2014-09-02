@@ -40,9 +40,9 @@ module Mediadrawer
     test "folder path" do
       folder1 = Folder.create name: 'folder1'
       subfolder1 = Folder.create name: 'subfolder1', parent: folder1
-      assert Folder.root.path == '/', "Returning: #{Folder.root.path}, expected: /"
-      assert folder1.path == '/folder1/', "Returning: #{folder1.path}, expected: /folder1/"
-      assert subfolder1.path == '/folder1/subfolder1/', "Returning: #{subfolder1.path}, expected: /folder1/subfolder1/"
+      assert Folder.root.path == '', "Returning: #{Folder.root.path}, expected: ''"
+      assert folder1.path == 'folder1', "Returning: #{folder1.path}, expected: folder1"
+      assert subfolder1.path == 'folder1/subfolder1', "Returning: #{subfolder1.path}, expected: folder1/subfolder1"
     end
 
     test "folder media" do

@@ -1,16 +1,17 @@
-<div>
-  <div class='directory-menu'>
-    <% 3.times do %>
-      <%= link_to 'directory 1',{}, { "class" => 'directory', "data-id" => 1 } %>
-    <% end %>
-  </div>
-
-  <div class='content'>
-    <% 3.times do %>
-      <%= link_to 'file 1',{}, { "class" => 'directory', "data-id" => 1 } %>
-    <% end %>
-  </div>
-
-  <div class='sidebar-right'>
-  </div>
-</div>
+<div class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Mediadrawer</h4>
+      </div>
+      <div class="modal-body">
+        <%= render 'containers' %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button data-select-image class="btn btn-primary" data-mediadrawer-select>Selecionar</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

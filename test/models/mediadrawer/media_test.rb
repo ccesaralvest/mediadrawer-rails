@@ -2,9 +2,6 @@ require 'test_helper'
 
 module Mediadrawer
   class MediaTest < ActiveSupport::TestCase
-    # test "the truth" do
-    #   assert true
-    # end
 
     test "set default path" do
       media = Media.new
@@ -26,7 +23,6 @@ module Mediadrawer
     test "mime type" do
       media = Media.new name: "teste-upload.txt"
       media.upload "teste-upload"
-
       assert(/text/.match media.mime_type)
     end
   end

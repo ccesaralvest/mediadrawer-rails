@@ -1,1 +1,5 @@
 bucket: test.tracersoft.com.br
+sizes:
+  original:
+  medium: 600x400
+  thumbnail: 140x120
