@@ -1,10 +1,13 @@
 module Mediadrawer
   class FoldersController < ApplicationController
-    def show
-      @files = Folder.find(params[:id]).files
+    respond_to :json
 
-      respond_to do |format|
-        format.json { render json: @files }
+    def index
+      path = params[:path] || '/'
+      @recursive = params[:recursive] || '0'
+      @folder = Folder.discover(path)
+      unless @folder
+        head 404
       end
     end
   end

@@ -33,23 +33,37 @@ module Mediadrawer
       get "/mediadrawer/api/media/#{media2.id}"
       assert_response :success
       assert response.body.include? 'teste2.txt'
-      
     end
 
-    #test 'get all folders' do
-    #  media1 = Media.create name: 'teste.txt'
-    #  media2 = Media.create name: 'teste2.txt'
+    test 'get all folders' do
+      folder1 = Folder.create name: 'folder1'
+      Folder.create name: 'folder2'
+      Folder.create name: 'subfolder1', parent: folder1
 
-    #  get "/mediadrawer/api/media/#{media1.id}"
-    #  assert_response :success
-    #  assert response.body.include? 'teste.txt'
-    #  assert response.body.include? "/media/#{media1.id}"
+      get '/mediadrawer/api/folders'
+      assert_response :success
+      assert response.body.include? 'folder1'
+      assert response.body.include? 'folder2'
+      assert response.body.include? '[]'
+      assert !(response.body.include? 'subfolder1')
 
-    #  get "/mediadrawer/api/media/#{media2.id}"
-    #  assert_response :success
-    #  assert response.body.include? "/media/#{media2.id}"
-    #  assert response.body.include? 'teste2.txt'
-      
-    #end
+      get '/mediadrawer/api/folders?recursive=1'
+      assert_response :success
+      assert response.body.include? 'folder1'
+      assert response.body.include? 'folder2'
+      assert response.body.include? 'subfolder1'
+
+      get '/mediadrawer/api/folders?path=/'
+      assert_response :success
+      assert response.body.include? 'folder1'
+      assert response.body.include? 'folder2'
+      assert !(response.body.include? 'subfolder1')
+
+      get '/mediadrawer/api/folders?path=/folder1'
+      assert_response :success
+      assert !(response.body.include? '"folder1"')
+      assert !(response.body.include? 'folder2')
+      assert response.body.include? 'subfolder1'
+    end
   end
 end
