@@ -1,4 +1,6 @@
 Mediadrawer::Rails::Engine.routes.draw do
   root to: 'application#index'
-  resource :media
+  scope :api, defaults: {format: :json} do
+    resources :media
+  end
 end

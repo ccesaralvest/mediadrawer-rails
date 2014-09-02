@@ -1,11 +1,12 @@
 module Mediadrawer
-  class MediaController < ApplicationController::Base
-    before_action :list_defaults, only: [:index, :upload]
-
+  class MediaController < ApplicationController
+    before_action :index_defaults, only: [:index, :upload]
+    respond_to :json
+    
     def upload
     end
 
-    def select
+    def show
     end
 
     def index
