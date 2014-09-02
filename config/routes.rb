@@ -3,4 +3,5 @@ Mediadrawer::Rails::Engine.routes.draw do
   scope :api, defaults: {format: :json} do
     resources :media
   end
+  resources :folders, only: [:show]
 end
