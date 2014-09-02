@@ -6,7 +6,7 @@ module Mediadrawer
       folder = Folder.new
       medias = [ Media.new(id: 1), Media.new(id: 2) ]
       Folder.expects(:find).with(1).returns(folder)
-      folder.expects(:files).returns(medias)
+      folder.expects(:media_files).returns(medias)
 
       get :show, id: 1, use_route: :mediadrawer, format: :json
 
