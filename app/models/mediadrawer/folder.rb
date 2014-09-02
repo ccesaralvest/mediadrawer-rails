@@ -15,6 +15,11 @@ module Mediadrawer
       end
     end
 
+    def path
+      return '/' if parent.nil?
+      "#{parent.path}#{name}/"
+    end
+
     def self.discover(path='/')
       folders = path.to_s.split '/'
       if folders.empty?

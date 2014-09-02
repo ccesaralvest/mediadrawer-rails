@@ -2,11 +2,12 @@ module Mediadrawer
   class MediaController < ApplicationController
     before_action :index_defaults, only: [:index, :upload]
     respond_to :json
-    
+
     def upload
     end
 
     def show
+      @media = Media.find params[:id]
     end
 
     def index

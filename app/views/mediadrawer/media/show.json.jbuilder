@@ -1,0 +1,1 @@
+json.extract! @media, :id, :name, :alt, :url, :mime_type
