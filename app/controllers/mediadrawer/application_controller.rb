@@ -1,4 +1,7 @@
 module Mediadrawer
-  class ApplicationController < ::ActionController::Base
+  class ApplicationController < ActionController::Base
+    def index
+      @directories = Folder.all
+    end
   end
 end
