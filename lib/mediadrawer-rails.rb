@@ -4,7 +4,7 @@ require 'filemagic'
 require 'jbuilder'
 require "inflections"
 require "bootstrap-sass"
-require 'rmagick'
+require 'RMagick'
 require 'open-uri'
 
 module Mediadrawer
