@@ -6,15 +6,19 @@ class @Mediadrawer
   load: ->
     $.get @path, (data)=>
       $data = $('<div>'+data+'</div>')
+      $('#mediadrawer').unbind()
       if $('#mediadrawer').length > 0
         $('#mediadrawer').contents $('#mediadrawer', $data).contents()
       else
         $('body').append $data
         $('#mediadrawer').modal()
-        @bindEvents $('#mediadrawer')
+      @bindEvents $('#mediadrawer')
       $('#mediadrawer').modal('show')
       @foldersContainer.load()
       @mediaContainer.load()
+
+  close: ->
+    $('#mediadrawer').modal('hide')
 
   fileSelected: (file)->
     console.log(file)
@@ -26,6 +30,7 @@ class @Mediadrawer
 
     $data.on 'click', '[data-mediadrawer-select]', =>
       @fileSelected this.mediaContainer.getActive()
+      @close()
 
     $data.on 'click', '[data-async-submit]', ->
       $form = $(this).closest('form')
