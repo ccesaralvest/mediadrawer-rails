@@ -3,6 +3,9 @@
       @node = @asJquery()
       @bindEvents()
 
+    id: ->
+      @json.id
+
     getNode: ->
       @node
 

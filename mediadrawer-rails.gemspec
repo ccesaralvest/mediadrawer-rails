@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'jbuilder'
   s.add_dependency "coffee-script"
   s.add_dependency "jquery-rails"
-  s.add_dependency "bootstrap-sass"
   s.add_dependency "rmagick"
   s.add_dependency "railties"
 
