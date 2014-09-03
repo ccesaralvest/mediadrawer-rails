@@ -11,8 +11,8 @@ class @Mediadrawer
       else
         $('body').append $data
         $('#mediadrawer').modal()
+        @bindEvents $('#mediadrawer')
       $('#mediadrawer').modal('show')
-      @bindEvents $('#mediadrawer')
       @foldersContainer.load()
       @mediaContainer.load()
 
