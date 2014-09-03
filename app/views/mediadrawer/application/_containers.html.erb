@@ -9,6 +9,7 @@
 <div class="row">
   <div class='col-xs-12'>
     <div class="tab-content">
+
       <div class="tab-pane active" id="files">
         <div class='folder-menu col-xs-2' data-folder-menu>
           <ul></ul>
@@ -17,6 +18,7 @@
           <ul></ul>
         </div>
       </div>
+
       <div class="tab-pane" id="upload">
         <form action="/mediadrawer/api/media" method="POST" enctype="multipart/form-data">
           <div class="row">
@@ -29,7 +31,7 @@
               <hr />
               <div class="row">
                 <div class="col-xs-12">
-                  <input type="text" name="link">
+                  <input type="url" name="link">
                 </div>
               </div>
             </div>
@@ -44,6 +46,7 @@
           </div>
         </form>
       </div>
+      
     </div>
   </div>
 </div>
