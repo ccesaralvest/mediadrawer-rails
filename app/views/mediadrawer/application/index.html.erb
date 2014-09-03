@@ -1,5 +1,5 @@
-<div class="modal fade">
-  <div class="modal-dialog">
+<div id="mediadrawer" class="modal fade">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -9,6 +9,7 @@
         <%= render 'containers' %>
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-add-folder>Nova pasta</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
         <button data-select-image class="btn btn-primary" data-mediadrawer-select>Selecionar</button>
       </div>

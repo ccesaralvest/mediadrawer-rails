@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.summary     = "Mediadrawer is a media library for rails"
   s.license     = "MIT"
 
-  s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib,vendor}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 4.1.5"
@@ -23,9 +23,12 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "bootstrap-sass"
   s.add_dependency "rmagick"
+  s.add_dependency "railties"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "database_cleaner"
   s.add_development_dependency "mocha"
   s.add_development_dependency "pry"
+  s.add_development_dependency "binding_of_caller"
+  s.add_development_dependency "better_errors"
 end

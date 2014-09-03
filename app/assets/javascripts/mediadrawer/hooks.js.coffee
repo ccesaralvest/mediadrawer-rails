@@ -7,5 +7,4 @@ class @Hooks
 
   @uploadSuccess = ->
     $('progress').hide()
-    MediaContainer.load()
     $('[href="#files"]').tab('show')

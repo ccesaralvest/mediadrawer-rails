@@ -2,16 +2,24 @@ module Mediadrawer
   class Folder < ActiveRecord::Base
     has_many :media_files,    :class_name=> 'Media', foreign_key: 'folder_id'
     has_many :children, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id"
-    belongs_to :parent, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id"
+    belongs_to :parent, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id", :dependent=>:destroy
 
     after_initialize :set_defaults
+    after_initialize :parameterize
+
+    before_save :parameterize
 
     scope :root, -> { find_or_create_by name: 'root_path' }
 
     def set_defaults
-      self.name = self.name ? self.name.parameterize : nil
       if self.name != 'root_path'
         self.parent ||= Folder.root
+      end
+    end
+
+    def parameterize
+      if self.name
+        self.name = I18n.transliterate(name)
       end
     end
 

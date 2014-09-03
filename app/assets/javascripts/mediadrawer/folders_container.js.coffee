@@ -1,63 +1,26 @@
-class @FoldersContainer
-  @clear: ->
-    $(@selector).empty()
+class Mediadrawer.FoldersContainer extends Mediadrawer.Container
+  @resourcePath: 'folders'
 
-  @setSelector: (selector)->
-    @selector = selector
+  constructor: (@$container, @mediadrawer)->
+    super(@$container, @mediadrawer)
+    @root = new Mediadrawer.RootFolder(this)
+    @setActive(@root)
+  
+  addFolder: ->
+    folder_name = prompt 'Nome da pasta'
+    if !folder_name
+      return
+    url = "#{@mediadrawer.path}/#{@constructor.resourcePath}"
+    $.post url, name: folder_name, (json)=>
+      @append @constructor.obj(json, @)
 
-  @appendFolder: (json) ->
-    folder = new FoldersContainer.folder(json)
-    $(@selector).append folder.toHTML()
+  @obj: (json, container)->
+    new Mediadrawer.Folder(json, container)
 
-  @append: (cls) ->
-    $(@selector).append cls.toHTML()
+  beforeLoad: ->
+    @append @root
+    @setActive(@root)
 
-  @setActive: (folder) ->
-    @active = folder
+  endAppend: ->
 
-  @getActive: ->
-    @active
-
-  @load: ->
-    $.get "mediadrawer/api/folders", (folders)->
-      FoldersContainer.clear()
-
-      FoldersContainer.append(new FoldersContainer.rootFolder())
-      for folder in folders
-        FoldersContainer.appendFolder folder
-
-  class @folder
-    constructor: (@json)->
-      @element = this.toHTML()
-      this.bindEvents()
-
-    bindEvents: ->
-      $(@element).click =>
-        FoldersContainer.setActive this
-        MediaContainer.load()
-
-    path: ->
-      @json.path
-
-    toHTML: ->
-      if @element
-        @element
-      else
-        $("<li><a href='#'>#{@json.name}</a></li>")
-
-  class @rootFolder extends @folder
-    constructor: ->
-      @json =
-        path: '',
-        name: 'Home'
-      super(@json)
-
-    toHTML: ->
-      if @element
-        @element
-      else
-        $("<li><a href='#'><strong>#{@json.name}</strong></a></li>")
-root = new FoldersContainer.rootFolder()
-FoldersContainer.append root
-FoldersContainer.setActive root
       

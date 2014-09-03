@@ -1,26 +1,49 @@
 module Mediadrawer
   class Media < ActiveRecord::Base
     include Magick
-    belongs_to :folder
+    belongs_to :folder, :dependent=>:destroy
     after_initialize :set_defaults
+    after_initialize :parameterize
+
+    after_destroy :delete_file
+    before_save :parameterize
+
+    def delete_file
+      s3 = S3.new
+      unless mime_type =~ /image/
+        s3.delete path
+      else
+        Mediadrawer.config['sizes'].each do |size_name, size|
+          s3.delete self.path(size_name)
+        end
+      end
+    end
 
     def set_defaults
-      if self.name
-        self.name = I18n.transliterate(name.gsub(' ', ''))
-      end
       self.folder ||= Folder.root
     end
 
-    def path
-      "#{self.folder.path}/#{name}"
+    def parameterize
+      if self.name
+        self.name = I18n.transliterate(name.gsub(' ', ''))
+      end
     end
 
-    def url_for(size)
+    def path(size=nil)
+      file_path_part = size ? "#{size}/#{name}" : name
+      if self.folder.path.empty?
+        file_path_part
+      else
+        "#{self.folder.path}/#{file_path_part}"
+      end
+    end
+
+    def url_for(size=nil)
       s3 = S3.new
       unless mime_type =~ /image/
         s3[path].public_url.to_s
       else
-        remote_file_path = "#{self.folder.path}/#{size.to_s}/#{name}"
+        remote_file_path = self.path(size)
         s3[remote_file_path].public_url.to_s
       end
     end
@@ -41,13 +64,13 @@ module Mediadrawer
       s3 = S3.new
       
       unless mime_type =~ /image/
-        s3.create file.path, file
-        obj = s3[file.path]
+        s3.create self.path, file
+        obj = s3[self.path]
         self.url = obj.public_url.to_s
         return obj
       end
       Mediadrawer.config['sizes'].each do |size_name, size|
-        remote_file_path = "#{self.folder.path}/#{size_name}/#{name}"
+        remote_file_path = self.path(size_name)
         if size_name == 'original'
           s3.create remote_file_path, file
           obj = s3[remote_file_path]

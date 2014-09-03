@@ -1,21 +1,25 @@
 module Mediadrawer
   class MediaController < ApplicationController
-    before_action :index_defaults, only: [:index, :upload]
     respond_to :json
 
     def create
       @media = Media.new
+      @media.folder = Folder.discover(params[:path])
       if params[:file]
         file = params[:file]
-        @media.name = file.original_name
-        @media.upload(file.read)
+        @media.name = file.original_filename
+        @media.upload(file.tempfile)
       elsif params[:link]
         link = params[:link]
         @media.name = File.basename(link)
-        @media.upload(URI.parse(link).read)
+        @media.upload open(link, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
       end
-
+      @media.save
       render :show
+    end
+
+    def destroy
+      Media.find(params[:id]).destroy
     end
 
     def update
@@ -29,12 +33,7 @@ module Mediadrawer
     end
 
     def index
-      @media_files = @current_folder.media_files
+      @media_files = Folder.discover(params[:path]).media_files
     end
-
-    private
-      def index_defaults
-        @current_folder = Folder.discover(params[:path])
-      end
   end
 end
