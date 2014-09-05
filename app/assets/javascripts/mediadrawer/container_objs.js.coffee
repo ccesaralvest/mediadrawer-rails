@@ -13,6 +13,7 @@
       $(@node).click =>
         @container.setActive(this)
         @onClick()
+        false
 
     onClick: ->
 
