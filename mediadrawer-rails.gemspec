@@ -17,7 +17,6 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.1.5"
   s.add_dependency "aws-sdk"
-  s.add_dependency "ruby-filemagic"
   s.add_dependency 'jbuilder'
   s.add_dependency "coffee-script"
   s.add_dependency "jquery-rails"
