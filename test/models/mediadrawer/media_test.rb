@@ -22,6 +22,7 @@ module Mediadrawer
 
     test "mime type" do
       media = Media.new name: "teste-upload.txt"
+      media.mime_type = 'text/html'
       media.upload "teste-upload"
       assert(/text/.match media.mime_type)
     end

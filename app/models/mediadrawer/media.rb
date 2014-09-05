@@ -48,7 +48,7 @@ module Mediadrawer
       end
     end
 
-    def upload(content='')
+    def upload(content)
       unless content.kind_of? Tempfile
         file = Tempfile.new(self.name)
         file.binmode
@@ -58,9 +58,6 @@ module Mediadrawer
         file = content
       end
 
-      mime_type = FileMagic.new(FileMagic::MAGIC_MIME).file(file.path).to_s
-
-      self.mime_type = mime_type
       s3 = S3.new
       
       unless mime_type =~ /image/
@@ -69,6 +66,7 @@ module Mediadrawer
         self.url = obj.public_url.to_s
         return obj
       end
+
       Mediadrawer.config['sizes'].each do |size_name, size|
         remote_file_path = self.path(size_name)
         if size_name == 'original'

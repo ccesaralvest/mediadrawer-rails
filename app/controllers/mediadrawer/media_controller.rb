@@ -7,12 +7,15 @@ module Mediadrawer
       @media.folder = Folder.discover(params[:path])
       if params[:file]
         file = params[:file]
+        @media.mime_type = file.content_type
         @media.name = file.original_filename
         @media.upload(file.tempfile)
       elsif params[:link]
         link = params[:link]
         @media.name = File.basename(link)
-        @media.upload open(link, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE).read
+        response = open(link, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE)
+        response.mime_type = response.content_type
+        @media.upload response.read
       end
       @media.save
       render :show
