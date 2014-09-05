@@ -1,6 +1,5 @@
 require "mediadrawer/rails/engine"
 require "mediadrawer/s3"
-require 'filemagic'
 require 'jbuilder'
 require "inflections"
 require "bootstrap-sass"

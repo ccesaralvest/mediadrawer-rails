@@ -3,14 +3,12 @@ PATH
   specs:
     mediadrawer-rails (0.0.1)
       aws-sdk
-      bootstrap-sass
       coffee-script
       jbuilder
       jquery-rails
       rails (~> 4.1.5)
       railties
       rmagick
-      ruby-filemagic
 
 GEM
   remote: https://rubygems.org/
@@ -53,8 +51,6 @@ GEM
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
-    bootstrap-sass (3.2.0.1)
-      sass (~> 3.2)
     builder (3.2.2)
     coderay (1.1.0)
     coffee-script (2.3.0)
@@ -112,8 +108,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
     rmagick (2.13.3)
-    ruby-filemagic (0.6.1)
-    sass (3.4.2)
     slop (3.6.0)
     sprockets (2.12.1)
       hike (~> 1.2)
