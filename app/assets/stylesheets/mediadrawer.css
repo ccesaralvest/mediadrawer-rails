@@ -1,3 +1,5 @@
 /*
  *= require_tree ./mediadrawer
  */
+
+ ul.sidebar-nav li.active .fa-folder-o:before {content:"\f115" !important;}

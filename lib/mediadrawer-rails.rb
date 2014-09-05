@@ -2,7 +2,9 @@ require "mediadrawer/rails/engine"
 require "mediadrawer/s3"
 require 'jbuilder'
 require "inflections"
+require "sass-rails"
 require "bootstrap-sass"
+require "font-awesome-sass"
 require 'RMagick'
 require 'open-uri'
 
