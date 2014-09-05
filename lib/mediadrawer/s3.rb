@@ -1,5 +1,7 @@
 require 'aws-sdk'
-AWS.config(region: 'sa-east-1')
+AWS.config(region: 'sa-east-1',
+  :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
+  :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
 module Mediadrawer
   class S3
     def initialize

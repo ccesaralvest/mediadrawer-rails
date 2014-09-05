@@ -41,7 +41,7 @@ module Mediadrawer
     def url_for(size=nil)
       s3 = S3.new
       unless mime_type =~ /image/
-        s3[path].public_url.to_s
+        s3[path('original')].public_url.to_s
       else
         remote_file_path = self.path(size)
         s3[remote_file_path].public_url.to_s
@@ -65,7 +65,7 @@ module Mediadrawer
       
       unless mime_type =~ /image/
         s3.create self.path, file
-        obj = s3[self.path]
+        obj = s3[self.path('original')]
         self.url = obj.public_url.to_s
         return obj
       end
