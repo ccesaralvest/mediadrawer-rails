@@ -23,6 +23,9 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "rmagick"
   s.add_dependency "railties"
+  s.add_dependency "sass-rails"
+  s.add_dependency "font-awesome-sass"
+  s.add_dependency "bootstrap-sass"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "database_cleaner"
