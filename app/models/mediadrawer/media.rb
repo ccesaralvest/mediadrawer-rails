@@ -25,7 +25,7 @@ module Mediadrawer
 
     def parameterize
       if self.name
-        self.name = I18n.transliterate(name.gsub(' ', ''))
+        self.name = I18n.transliterate(name.gsub(' ', '')).parameterize
       end
     end
 
@@ -59,7 +59,7 @@ module Mediadrawer
       end
 
       s3 = S3.new
-      
+
       unless mime_type =~ /image/
         s3.create self.path, file
         obj = s3[self.path('original')]

@@ -6,14 +6,12 @@ class @Mediadrawer
   load: ->
     $.get @path, (data)=>
       $data = $('<div>'+data+'</div>')
-      $('#mediadrawer').unbind()
       if $('#mediadrawer').length > 0
-        $('#mediadrawer').contents $('#mediadrawer', $data).contents()
-      else
-        $('body').append $data
-        $('#mediadrawer').modal()
+        $('#mediadrawer').remove()
+
+      $('body').append $data
+      $('#mediadrawer').modal()
       @bindEvents $('#mediadrawer')
-      $('#mediadrawer').modal('show')
       @foldersContainer.load()
       @mediaContainer.load()
 
