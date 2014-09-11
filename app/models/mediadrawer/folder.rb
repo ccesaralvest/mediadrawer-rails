@@ -5,9 +5,6 @@ module Mediadrawer
     belongs_to :parent, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id", :dependent=>:destroy
 
     after_initialize :set_defaults
-    after_initialize :parameterize
-
-    before_save :parameterize
 
     scope :root, -> { find_or_create_by name: 'root_path' }
 
@@ -17,10 +14,8 @@ module Mediadrawer
       end
     end
 
-    def parameterize
-      if self.name
-        self.name = I18n.transliterate(name)
-      end
+    def name=(v)
+      write_attribute :name, v.to_s.parameterize
     end
 
     def path

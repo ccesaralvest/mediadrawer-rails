@@ -3,10 +3,8 @@ module Mediadrawer
     include Magick
     belongs_to :folder, :dependent=>:destroy
     after_initialize :set_defaults
-    after_initialize :parameterize
 
     after_destroy :delete_file
-    before_save :parameterize
 
     def delete_file
       s3 = S3.new
@@ -23,10 +21,11 @@ module Mediadrawer
       self.folder ||= Folder.root
     end
 
-    def parameterize
-      if self.name
-        self.name = I18n.transliterate(name.gsub(' ', '')).parameterize
-      end
+    def name=(v)
+      v = v.to_s
+      extension = v.split('.').last
+      name = v.split('.')[0...-1].join '.'
+      write_attribute :name, "#{name.parameterize}.#{extension}"
     end
 
     def path(size=nil)
