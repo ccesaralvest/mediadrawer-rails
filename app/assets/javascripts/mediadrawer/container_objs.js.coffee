@@ -20,7 +20,7 @@
 
   class Mediadrawer.Image extends ContainerObj
     asJquery: ->
-      $("<li><img src='#{@json.thumbnail}' alt='#{@json.alt}' /></li>")
+      $("<li class='col-xs-3'><img class='img-responsive img-thumbnail' src='#{@json.thumbnail}' alt='#{@json.alt}' /></li>")
 
 
   class Mediadrawer.File extends ContainerObj
@@ -36,7 +36,7 @@
       @container.mediadrawer.mediaContainer.load()
 
     asJquery: ->
-        $("<li><i class='fa fa-folder-o'></i><a href='#'>#{@json.name}</a></li>")
+        $("<li><i class='fa fa-folder-o'><a href='#'>#{@json.name}</a></i></li>")
 
 
   class Mediadrawer.RootFolder extends Mediadrawer.Folder
