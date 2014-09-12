@@ -2,19 +2,38 @@
  *= require_tree ./mediadrawer
  */
 
- ul.sidebar-nav li.active .fa-folder-o:before {content:"\f115" !important;}
-
- ul li .active { }
+/* ----------------------
+    Geral */
 
 ul {         
   padding:0 0 0 0;
   margin:0 0 0 0;
-}
+} 
+
+/* ----------------------
+    Folders */
+
+ul.sidebar-nav li.active .fa-folder-o:before {content:"\f115" !important;}
+
+.folder-list:first-child { margin-top: 10px; }
+.folder-list i { display: inline; margin-right: 5px; }
+
+div.folder-menu ul li { list-style: none;  }
+/* div.folder-menu ul li.active i { background-color: #3071a9; border-color: #285e8e; border: 1px solid transparent; border-radius: 4px;  padding: 2px;}
+div.folder-menu ul li i, a { color: #fff; } */
+
+/* ----------------------
+    Tabs */
+
+.tab-pane{ padding-top: 10px; }
+
+/* ----------------------
+    Conteúdo */
+
 ul.thumbnails li  {     
   list-style:none;
   margin-bottom:25px;           
 }
-
 
 ul.thumbnails li:hover img  {     
   border-color: #428bca;;     
@@ -24,8 +43,16 @@ ul.thumbnails li.active img  {
   background-color: #3071a9;     
 }
 
-div.folder-menu ul li { list-style: none;  }
-/* div.folder-menu ul li.active i { background-color: #3071a9; border-color: #285e8e; border: 1px solid transparent; border-radius: 4px;  padding: 2px;}
-div.folder-menu ul li i, a { color: #fff; } */
+/* ----------------------
+    Progress bar */
 
-.tab-pane{ padding-top: 10px; }
+progress { margin-top: 15px; }
+progress,                          /* Firefox  */ 
+progress[role][aria-valuenow] {    /* Polyfill */
+   background: #3071a9 !important; /* !important is needed by the polyfill */
+}
+
+/* Chrome */
+progress::-webkit-progress-bar {
+    background: #3071a9;
+}

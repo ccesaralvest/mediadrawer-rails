@@ -36,7 +36,7 @@
       @container.mediadrawer.mediaContainer.load()
 
     asJquery: ->
-        $("<li><i class='fa fa-folder-o'><a href='#'>#{@json.name}</a></i></li>")
+        $("<li class='folder-list'><i class='fa fa-folder-o'></i><a href='#'>#{@json.name}</a></li>")
 
 
   class Mediadrawer.RootFolder extends Mediadrawer.Folder
