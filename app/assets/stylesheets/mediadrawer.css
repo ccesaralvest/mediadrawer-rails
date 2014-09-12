@@ -46,7 +46,7 @@ ul.thumbnails li.active img  {
 /* ----------------------
     Progress bar */
 
-progress { margin-top: 15px; }
+progress { margin-top: 15px; width: 100%; }
 progress,                          /* Firefox  */ 
 progress[role][aria-valuenow] {    /* Polyfill */
    background: #3071a9 !important; /* !important is needed by the polyfill */
@@ -54,5 +54,18 @@ progress[role][aria-valuenow] {    /* Polyfill */
 
 /* Chrome */
 progress::-webkit-progress-bar {
-    background: #3071a9;
+    background: #3071a9 !important;
+}
+
+progress {
+-webkit-appearance: none; -moz-appearance: none; appearance: none;
+width: 100%; height: 12px;
+background-color: #3071a9; border: none;
+color: #3071a9;
+}
+progress::-webkit-progress-bar, progress::-moz-progress-bar, progress::progress-bar {
+background-color: #3071a9;
+}
+progress::-moz-progress-bar {
+background-color: #3071a9;
 }
