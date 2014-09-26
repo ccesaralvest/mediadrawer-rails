@@ -42,7 +42,7 @@ class @Mediadrawer
 
       formData = new FormData($form[0])
       formData.append 'path', mediadrawer.foldersContainer.getActive().path()
-      if(!$form.find('[type=file]').val() && !validateURI($form.find('[type=text]').val()))
+      if(!$form.find('[type=file]').val() && !validateURI($form.find('[type=url]').val()))
         alert 'URL Inválida'
         return false
       $.ajax
