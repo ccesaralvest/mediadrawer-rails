@@ -1,21 +1,29 @@
 class @Mediadrawer
   constructor: (@path='/mediadrawer/api')->
-    @mediaContainer = new Mediadrawer.MediaContainer($('[data-image-container] ul'), this)
-    @foldersContainer = new Mediadrawer.FoldersContainer($('[data-folder-menu] ul'), this)
-
+    if window.mediadrawer instanceof Mediadrawer
+      return window.mediadrawer
+    else
+      @mediaContainer = new Mediadrawer.MediaContainer($('[data-image-container] ul'), this)
+      @foldersContainer = new Mediadrawer.FoldersContainer($('[data-folder-menu] ul'), this)
   load: ->
-    $.get @path, (data)=>
-      $data = $('<div>'+data+'</div>')
-      if $('#mediadrawer').length > 0
-        $('#mediadrawer').remove()
+    if(!this.loaded)
+      this.loaded=true 
+      $.get @path, (data)=> 
+        $data = $('<div>'+data+'</div>')
+        if $('#mediadrawer').length > 0
+          $('#mediadrawer').remove()
 
-      $('body').append $data
-      $('#mediadrawer').modal()
-      @bindEvents $('#mediadrawer')
-      @foldersContainer.load()
-      @mediaContainer.load()
+        $('body').append $data
+        $('#mediadrawer').modal()
+        $("#mediadrawer").on "hidden.bs.modal", (e) ->
+          window.mediadrawer.loaded=false
+          return
+        @bindEvents $('#mediadrawer')
+        @foldersContainer.load()
+        @mediaContainer.load()
 
   close: ->
+    this.loaded=false
     $('#mediadrawer').modal('hide')
 
   fileSelected: (file)->
