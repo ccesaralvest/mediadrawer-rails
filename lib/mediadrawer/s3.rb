@@ -1,14 +1,14 @@
 require 'aws-sdk'
-AWS.config(region: 'sa-east-1',
+AWS.config(region: ENV['S3_REGION'],
   :access_key_id => ENV['AWS_ACCESS_KEY_ID'],
   :secret_access_key => ENV['AWS_SECRET_ACCESS_KEY'])
 module Mediadrawer
   class S3
     def initialize
       @s3 = ::AWS::S3.new
-      @bucket = @s3.buckets[Mediadrawer.config['bucket']]
+      @bucket = @s3.buckets[ENV['S3_BUCKET']]
       unless @bucket.exists?
-        @bucket = @s3.buckets.create Mediadrawer.config['bucket']
+        @bucket = @s3.buckets.create ENV['S3_REGION']
       end
     end
 
