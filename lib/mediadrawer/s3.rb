@@ -8,7 +8,7 @@ module Mediadrawer
       @s3 = ::AWS::S3.new
       @bucket = @s3.buckets[ENV['S3_BUCKET']]
       unless @bucket.exists?
-        @bucket = @s3.buckets.create ENV['S3_REGION']
+        @bucket = @s3.buckets.create ENV['S3_BUCKET']
       end
     end
 
