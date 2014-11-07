@@ -25,7 +25,7 @@
 
   class Mediadrawer.File extends ContainerObj
     asJquery: ->
-       $("<li><img src='' alt='#{@json.alt}' /></li>")
+       $("<li class='col-xs-3 null'><div class='img-thumbnail'></div></li>")
 
 
   class Mediadrawer.Folder extends ContainerObj
