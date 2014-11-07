@@ -14,7 +14,7 @@ module Mediadrawer
         link = params[:link]
         @media.name = File.basename(link)
         response = open(link, ssl_verify_mode: OpenSSL::SSL::VERIFY_NONE)
-        response.mime_type = response.content_type
+        @media.mime_type = response.content_type
         @media.upload response.read
       end
       @media.save
