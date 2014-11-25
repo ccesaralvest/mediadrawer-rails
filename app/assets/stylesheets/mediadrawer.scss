@@ -30,9 +30,12 @@ div.folder-menu ul li i, a { color: #fff; } */
 /* ----------------------
     Conteúdo */
 
+// @include fontawesome(14px); 
+@mixin fontawesome($size, $content) { font-size: $size; display: inline-block; font-family: FontAwesome !important; font-style: normal; font-weight: normal; line-height: 1;  -webkit-font-smoothing: antialiased;  -moz-osx-font-smoothing:  grayscale; content:$content;}
+
 ul.thumbnails li  {     
   list-style:none;
-  margin-bottom:25px;           
+  margin-bottom:10px;           
 }
 
 ul.thumbnails li:hover img  {     
@@ -42,6 +45,22 @@ ul.thumbnails li:hover img  {
 ul.thumbnails li.active img  {     
   background-color: #3071a9;     
 }
+
+ul.thumbnails {
+  li { height:115px;
+    img {max-height:100%; width:100%;}
+    &.null {
+      &:before {@include fontawesome(72px, "\f0f6"); color:#e0e0e0; position:absolute; top:20px; left:59px;}
+      .img-thumbnail { width:100%; min-height:114px;}
+      &:hover, &.active { 
+        .img-thumbnail {border-color:#428bca; background-color: #428bca;}
+        &:before { color:#fff;}
+      }
+    }
+  }
+}
+
+//<li class="col-xs-3 null active"><div class="img-thumbnail"></div></li>
 
 /* ----------------------
     Progress bar */
@@ -69,3 +88,4 @@ background-color: #3071a9;
 progress::-moz-progress-bar {
 background-color: #3071a9;
 }
+
