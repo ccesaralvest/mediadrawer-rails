@@ -38,6 +38,15 @@ class @Mediadrawer
       @fileSelected this.mediaContainer.getActive()
       @close()
 
+    $data.find('#md-files > .container').bind 'scroll', ->
+      unless mediadrawer.mediaContainer.locked
+        if ($(this).scrollTop() + $(this).innerHeight()) >= this.scrollHeight
+          mediadrawer.mediaContainer.nextPage()
+          mediadrawer.mediaContainer.load(false)
+
+    $data.on 'click', '[filter]', ->
+      mediadrawer.mediaContainer.load(true, {type: $(this).attr('filter')})
+
     $data.on 'click', '[data-async-submit]', ->
       $form = $(this).closest('form')
       progressFn = Hooks[$(this).data('progress-fn')]

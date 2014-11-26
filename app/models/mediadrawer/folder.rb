@@ -1,8 +1,8 @@
 module Mediadrawer
   class Folder < ActiveRecord::Base
-    has_many :media_files,    :class_name=> 'Media', foreign_key: 'folder_id'
-    has_many :children, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id"
-    belongs_to :parent, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id", :dependent=>:destroy
+    has_many :media_files, :class_name=> 'Media', foreign_key: 'folder_id', dependent: :destroy
+    has_many :children, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id", dependent: :destroy
+    belongs_to :parent, :class_name=>"Mediadrawer::Folder", foreign_key: "parent_id" 
 
     after_initialize :set_defaults
 

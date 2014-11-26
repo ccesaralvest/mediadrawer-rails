@@ -1,66 +1,64 @@
 <div class="row">
   <div class="col-xs-11">
     <ul class="nav nav-tabs" role="tablist">
-      <li class="active"><a href="#files" role="tab" data-toggle="tab">Arquivos</a></li>
-      <li><a href="#upload" role="tab" data-toggle="tab">Upload</a></li>
+      <li class="active"><a href="#md-files" role="tab" data-toggle="tab">Arquivos</a></li>
+      <li><a href="#md-upload" role="tab" data-toggle="tab">Upload</a></li>
     </ul>
   </div>
 </div>
-<div class="row">
-  <div class='col-xs-12'>
-    <div class="row">
-      <div class="col-xs-2">
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-          <div class='folder-menu col-xs-2' data-folder-menu>
-            <ul class="sidebar-nav"></ul>
-          </div>
-        </div>
-        <!-- /#sidebar-wrapper -->
-      </div>
-      <div class="col-xs-10">
-        
-      
-    <div class="tab-content">
 
-      <div class="tab-pane active" id="files">
-        <div class='col-xs-12 container' data-image-container>
-          <ul class="row thumbnails"></ul>
-        </div>
-      </div>
+<div class="sidebar-wrapper">
+  <div class='folder-menu' data-folder-menu>
+    <ul></ul>
+  </div>
+</div>
 
-      <div class="tab-pane" id="upload">
-        <form action="<%= media_index_path %>" method="POST" enctype="multipart/form-data">
-          <div class="row">
-            <div class="col-xs-8">
-              <div class="row">
-                <div class="col-xs-12">
-                  <input type="file" name="file" class="file">
-                </div>
-              </div>
-              <hr />
-              <div class="row">
-                <div class="col-xs-12">
-                  URL: <input type="url" name="link" class="form-control" placeholder="http://exemplo.com">
-                </div>
-              </div>
-            </div>
-            <div class="col-xs-4">
-              <button class="btn btn-primary" data-async-submit data-success-fn="uploadSuccess" data-progress-fn='uploadProgress'>Upload</button>
-            </div>
-          </div>
+<div class="tab-content">
+
+  <div class="tab-pane active" id="md-files" class="files">
+    <div class="btn-group filter-actions" role="group" aria-label="Actions" data-toggle="buttons">
+      <label class="btn active" filter="">
+        <input type="radio" checked> Todos
+      </label>
+       <label class="btn" filter="image">
+        <input type="radio" checked> Imagens
+      </label>
+       <label class="btn" filter="application">
+        <input type="radio" checked> Arquivos
+      </label>
+    </div>
+    <div class='info-panel'></div>
+    <div class='files-container' data-image-container>
+      <ul class="thumbnails"></ul>
+    </div>
+  </div>
+
+  <div class="tab-pane" id="md-upload" class="upload">
+    <form action="<%= media_index_path %>" method="POST" enctype="multipart/form-data">
+      <div class="row">
+        <div class="col-xs-8">
           <div class="row">
             <div class="col-xs-12">
-              <progress max="100" style="display: none"></progress>
+              <input type="file" name="file" class="file">
             </div>
           </div>
-        </form>
+          <hr />
+          <div class="row">
+            <div class="col-xs-12">
+              URL: <input type="url" name="link" class="form-control" placeholder="http://exemplo.com">
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-4">
+          <button class="btn btn-primary" data-async-submit data-success-fn="uploadSuccess" data-progress-fn='uploadProgress'>Upload</button>
+        </div>
       </div>
-
-    </div>
-
-</div>
-    </div>
-
+      <div class="row">
+        <div class="col-xs-12">
+          <progress max="100" style="display: none"></progress>
+        </div>
+      </div>
+    </form>
   </div>
+
 </div>

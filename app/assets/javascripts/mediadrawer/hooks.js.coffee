@@ -7,4 +7,4 @@ class @Hooks
 
   @uploadSuccess = ->
     $('progress').hide()
-    $('[href="#files"]').tab('show')
+    $('[href="#md-files"]').tab('show')

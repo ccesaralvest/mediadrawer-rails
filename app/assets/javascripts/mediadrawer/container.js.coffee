@@ -30,14 +30,23 @@ class Mediadrawer.Container
   loadParams: ->
     {}
 
-  beforeLoad: ->
+  beforeLoad: (clear)->
 
-  load: ->
+  beforeAppend: ->
+
+  afterLoad: ->
+    @locked = false
+
+  load: (clear=true, params={})->
+    @locked = true
     @$container = $(@$container.selector)
-    $.get "#{@mediadrawer.path}/#{@constructor.resourcePath}", @loadParams(), (objs)=>
-      @clear()
-      @beforeLoad()
+    @beforeLoad(clear)
+    $.get "#{@mediadrawer.path}/#{@constructor.resourcePath}", @loadParams(params), (objs)=>
+      if clear
+        @clear()
+      @beforeAppend()
       for obj in objs
         obj = new @constructor.obj(obj, this)
         @append(obj)
-      @endAppend()
+      @endAppend(objs)
+      @afterLoad(objs)

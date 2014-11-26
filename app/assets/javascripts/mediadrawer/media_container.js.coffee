@@ -7,5 +7,25 @@ class Mediadrawer.MediaContainer extends Mediadrawer.Container
     else
       new Mediadrawer.File(json, container)
 
-  loadParams: ->
-    { path: @mediadrawer.foldersContainer.getActive().path() }
+  afterLoad: (objs)->
+    super
+    if objs.length == 0
+      @page = null
+
+  page: 1
+
+  load: (clear=true)->
+    if clear
+      @page = 1
+    if @page != null
+      super
+
+  nextPage: ->
+    if @page
+      @page += 1
+
+  loadParams: (params={})->
+    newParams = { path: @mediadrawer.foldersContainer.getActive().path(), page: @page }
+    for k of newParams
+      params[k] = newParams[k]
+    params

@@ -5,7 +5,7 @@ class Mediadrawer.FoldersContainer extends Mediadrawer.Container
     super(@$container, @mediadrawer)
     @root = new Mediadrawer.RootFolder(this)
     @setActive(@root)
-  
+
   addFolder: ->
     folder_name = prompt 'Nome da pasta'
     if !folder_name
@@ -17,10 +17,7 @@ class Mediadrawer.FoldersContainer extends Mediadrawer.Container
   @obj: (json, container)->
     new Mediadrawer.Folder(json, container)
 
-  beforeLoad: ->
+  beforeAppend: ->
     @append @root
-    @setActive(@root)
 
-  endAppend: ->
 
-      

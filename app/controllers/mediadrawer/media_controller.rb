@@ -36,7 +36,13 @@ module Mediadrawer
     end
 
     def index
-      @media_files = Folder.discover(params[:path]).media_files
+      @folder = Folder.discover(params[:path])
+      @media_files = @folder.media_files
+      if params[:type]
+        @media_files = @media_files.where('mime_type like ?', ["%#{params[:type]}%"])
+      end
+      @media_files = @media_files.page(params[:page]).per(params[:per])
+      @folder.media_files
     end
   end
 end

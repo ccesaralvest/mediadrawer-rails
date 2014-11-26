@@ -7,6 +7,8 @@ require "bootstrap-sass"
 require "font-awesome-sass"
 require 'RMagick'
 require 'open-uri'
+require 'kaminari'
+require 'handlebars_assets'
 
 module Mediadrawer
   class << self

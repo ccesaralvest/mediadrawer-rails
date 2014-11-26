@@ -13,20 +13,26 @@
       $(@node).click =>
         @container.setActive(this)
         @onClick()
+        $('#mediadrawer .info-panel')
+          .html(HandlebarsTemplates['panel'](@json))
+        $('#mediadrawer #md-files').addClass('open-panel')
         false
 
     onClick: ->
 
+    asJquery: ->
+      $(@asHTML())
+
+    asHTML: ->
+      HandlebarsTemplates[@template_type](@json)
 
   class Mediadrawer.Image extends ContainerObj
-    asJquery: ->
-      $("<li class='col-xs-3'><img class='img-responsive img-thumbnail' src='#{@json.thumbnail}' alt='#{@json.alt}' /></li>")
+    template_type: 'img'
 
+    onClick: ->
 
   class Mediadrawer.File extends ContainerObj
-    asJquery: ->
-       $("<li class='col-xs-3 null'><div class='img-thumbnail'></div></li>")
-
+    template_type: 'file'
 
   class Mediadrawer.Folder extends ContainerObj
     path: ->
@@ -35,9 +41,7 @@
     onClick: ->
       @container.mediadrawer.mediaContainer.load()
 
-    asJquery: ->
-        $("<li class='folder-list'><i class='fa fa-folder-o'></i><a href='#'>#{@json.name}</a></li>")
-
+    template_type: 'folder'
 
   class Mediadrawer.RootFolder extends Mediadrawer.Folder
     constructor: (@container)->

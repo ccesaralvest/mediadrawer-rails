@@ -1,0 +1,39 @@
+{{#if original }}
+  <div class="img-wrapper">
+    <img src="{{medium}}" alt="{{alt}}" />
+  </div>
+{{else}}
+  <div class="file-thumb">
+    <i class="fa fa-file-text"></i>
+  </div>
+{{/if}}
+<div class="info">
+  <div>
+    <label>Arquivo</label><br>
+    <div title="{{name}}" class="name">{{name}}</div>
+  </div>
+
+  <div>
+  <label>Links</label>
+  {{#if original }}
+    <ul>
+    {{#each sizes}}
+      <li>
+        <a target="_blank" href="{{lookup ../this @key}}">{{@key}}
+          {{#if this}}({{this}}){{/if}}</a>
+      </li>
+    {{/each}}
+    </ul>
+  {{else}}
+    <ul>
+      <li><a target="_blank" href="{{url}}">Arquivo</a></li>
+    </ul>
+  {{/if}}
+  </div>
+  {{#if original }}
+    <div>
+      <label>Image alt</label>
+      <input type="text" value="{{alt}}" data-img-id="{{id}}" placeholder="alt" class="form-control">
+    </div>
+  {{/if}}
+</div>
