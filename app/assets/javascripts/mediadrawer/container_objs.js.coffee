@@ -13,8 +13,14 @@
       $(@node).click =>
         @container.setActive(this)
         @onClick()
+        $panel = $(HandlebarsTemplates['panel'](@json))
+        $panel.on 'change', '.alt', (e)=>
+          $.ajax
+            url: @json.resource_url,
+            data: { alt: $(e.target).val() },
+            method: 'PATCH'
         $('#mediadrawer .info-panel')
-          .html(HandlebarsTemplates['panel'](@json))
+          .html($panel)
         $('#mediadrawer #md-files').addClass('open-panel')
         false
 
