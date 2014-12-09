@@ -38,7 +38,7 @@ class @Mediadrawer
       @fileSelected this.mediaContainer.getActive()
       @close()
 
-    $data.find('#md-files > .container').bind 'scroll', ->
+    $data.find('#md-files > .files-container').bind 'scroll', ->
       unless mediadrawer.mediaContainer.locked
         if ($(this).scrollTop() + $(this).innerHeight()) >= this.scrollHeight
           mediadrawer.mediaContainer.nextPage()
