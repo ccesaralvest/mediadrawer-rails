@@ -1,4 +1,4 @@
-json.cache! ['v1', @media_files,  @folder.updated_at], expires_in: 1.week do
+json.cache! ['v1', @media_files.map(&:updated_at),  @folder.updated_at], expires_in: 1.week do
   json.array! @media_files do |media|
     json.extract! media, :id, :name, :alt, :url, :mime_type, :type
     if media.is_image?

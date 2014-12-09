@@ -6,9 +6,9 @@ class @Mediadrawer
       @mediaContainer = new Mediadrawer.MediaContainer($('[data-image-container] ul'), this)
       @foldersContainer = new Mediadrawer.FoldersContainer($('[data-folder-menu] ul'), this)
   load: ->
-    if(!this.loaded)
-      this.loaded=true 
-      $.get @path, (data)=> 
+    if !this.loaded
+      this.loaded=true
+      $.get @path, (data)=>
         $data = $('<div>'+data+'</div>')
         if $('#mediadrawer').length > 0
           $('#mediadrawer').remove()
