@@ -9,6 +9,7 @@ require 'RMagick'
 require 'open-uri'
 require 'kaminari'
 require 'handlebars_assets'
+require 'digest/md5'
 
 module Mediadrawer
   class << self
